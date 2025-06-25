@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "name": "Location A",
+    "coords": [41.45330011034379, -8.28837129166596],
+    "modelUrl": "models/ccg.glb"
+  },
+  {
+    "id": "2",
+    "name": "Location B",
+    "coords": [41.453074955940195, -8.288819220548435],
+    "modelUrl": "models/model.glb"
+  }
+]
