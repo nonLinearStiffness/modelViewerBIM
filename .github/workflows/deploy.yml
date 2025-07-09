@@ -1,55 +1,54 @@
-[
-  {
-    "id": "1",
-    "name": "Location A",
-    "coords": [41.45330011034379, -8.28837129166596],
-    "modelUrl": "models/ccg.glb"
-    "id": "0",
-    "name": "Test Building",
-    "coords": [
-      41.448599,
-      -8.289571
-    ],
-    "modelUrl": "models/model.glb"
-  },
-  {
-    "id": "2",
-    "name": "Location B",
-    "coords": [41.453074955940195, -8.288819220548435],
-    "modelUrl": "models/model.glb"
-    "name": "CCG/ZGDV Building",
-    "coords": [
-      41.453149,
-      -8.288615
-    ],
-    "modelUrl": "models/ccg.glb"
-  },
-  {
-    "id": "3",
-    "name": "",
-    "coords": [
-      0,
-      0
-    ],
-    "modelUrl": "models/XYZ.glb"
-  },
-  {
-    "id": "4",
-    "name": "",
-    "coords": [
-      0,
-      0
-    ],
-    "modelUrl": "models/XYZ.glb"
-  },
-  {
-    "id": "5",
-    "name": "",
-    "coords": [
-      0,
-      0
-    ],
-    "modelUrl": "models/XYZ.glb"
-  }
-]
-]
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
