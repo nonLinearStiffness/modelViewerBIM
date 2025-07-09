@@ -19,28 +19,28 @@
   },
   {
     "id": "3",
-    "name": "",
+    "name": "Model Example 1",
     "coords": [
-      0,
-      0
+      41.149773,
+      -8.628099
     ],
     "modelUrl": "models/XYZ.glb"
   },
   {
     "id": "4",
-    "name": "",
+    "name": "Model Example 2",
     "coords": [
-      0,
-      0
+      41.149977,
+      -8.627673
     ],
     "modelUrl": "models/XYZ.glb"
   },
   {
-    "id": "5",
+    "id": "Model Example 3",
     "name": "",
     "coords": [
-      0,
-      0
+      41.149939,
+      -8.628042
     ],
     "modelUrl": "models/XYZ.glb"
   }
