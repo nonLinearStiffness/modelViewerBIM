@@ -1,14 +1,47 @@
 [
   {
-    "id": "1",
-    "name": "Location A",
-    "coords": [41.45330011034379, -8.28837129166596],
-    "modelUrl": "models/ccg.glb"
+    "id": "0",
+    "name": "Test Building",
+    "coords": [
+      41.448599,
+      -8.289571
+    ],
+    "modelUrl": "models/model.glb"
   },
   {
     "id": "2",
-    "name": "Location B",
-    "coords": [41.453074955940195, -8.288819220548435],
-    "modelUrl": "models/model.glb"
+    "name": "CCG/ZGDV Building",
+    "coords": [
+      41.453149,
+      -8.288615
+    ],
+    "modelUrl": "models/ccg.glb"
+  },
+  {
+    "id": "3",
+    "name": "",
+    "coords": [
+      0,
+      0
+    ],
+    "modelUrl": "models/XYZ.glb"
+  },
+  {
+    "id": "4",
+    "name": "",
+    "coords": [
+      0,
+      0
+    ],
+    "modelUrl": "models/XYZ.glb"
+  },
+  {
+    "id": "5",
+    "name": "",
+    "coords": [
+      0,
+      0
+    ],
+    "modelUrl": "models/XYZ.glb"
   }
 ]

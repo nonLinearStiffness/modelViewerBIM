@@ -14,13 +14,17 @@ async function fetchModelData() {
   return res.json();
 }
 
+// Function to locate the user and center the map
 function locateUser(controlBtn) {
+  // Try to locate the user using Geolocation API
+  // Will fire either "locationfound" or "locationerror"
   leafletMap.locate({
     setView: true,
     maxZoom: 14,
     enableHighAccuracy: true,
   });
 
+  // If location was found, then applies the location point.
   leafletMap.once("locationfound", (e) => {
     const radius = e.accuracy;
 
@@ -34,6 +38,7 @@ function locateUser(controlBtn) {
     }
   });
 
+  // If there was an error, location defaults to map center.
   leafletMap.once("locationerror", (e) => {
     console.warn("Location failed:", e.message);
     leafletMap.setView([51.505, -0.09], 13);
@@ -45,6 +50,7 @@ function locateUser(controlBtn) {
   });
 }
 
+// Function to add the markers for each location
 function addLocationMarkers() {
   locations.forEach((loc) => {
     const marker = L.marker(loc.coords).addTo(leafletMap);
@@ -86,7 +92,7 @@ function renderARView(id) {
         src="${loc.modelUrl}"
         alt="3D model of ${loc.name}"
         ar
-        ar-modes="scene-viewer webxr quick-look"
+        ar-modes="webxr scene-viewer quick-look"
         autoplay
         camera-controls
         ar-scale="fixed"
@@ -104,16 +110,20 @@ function renderMapView() {
     leafletMap = null;
   }
 
+  // Initialize the map
   leafletMap = L.map("map");
 
+  // Add OpenStreetMap tile layer
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors",
   }).addTo(leafletMap);
 
-  const center = mapCenter || [41.45330011034379, -8.28837129166596];
+  // Define the map start origin and zoom level
+  const center = mapCenter || [41.149819, -8.628316];
   const zoom = mapZoom || 13;
   leafletMap.setView(center, zoom);
 
+  // Add the location markers
   addLocationMarkers();
 
   // Add custom control again
