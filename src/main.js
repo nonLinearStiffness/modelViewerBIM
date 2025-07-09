@@ -16,8 +16,7 @@ async function fetchModelData() {
 
 // Function to locate the user and center the map
 function locateUser(controlBtn) {
-  // Try to locate the user using Geolocation API
-  // Will fire either "locationfound" or "locationerror"
+  // Try to locate the user using Geolocation API. Will fire either "locationfound" or "locationerror".
   leafletMap.locate({
     setView: true,
     maxZoom: 14,
