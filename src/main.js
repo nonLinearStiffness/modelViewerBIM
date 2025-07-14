@@ -26,7 +26,7 @@ const redIcon = new L.Icon({
 
 // Example: Custom building icon (uncomment and use if you want a building image)
 const buildingIcon = new L.Icon({
-  iconUrl: "/bim.png",
+  iconUrl: "bim.png",
   iconSize: [48, 48], // Increased size
   iconAnchor: [24, 48], // Adjust anchor to match new size
 });
