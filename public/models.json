@@ -1,6 +1,6 @@
 [
   {
-    "id": "0",
+    "id": "1",
     "name": "Test Building",
     "coords": [
       41.448599,
@@ -19,29 +19,47 @@
   },
   {
     "id": "3",
-    "name": "Model Example 1",
-    "coords": [
-      41.149773,
-      -8.628099
-    ],
-    "modelUrl": "models/XYZ.glb"
-  },
-  {
-    "id": "4",
-    "name": "Model Example 2",
+    "name": "NLRS_Onderwijsmodel_Bouwkundig_LOD3.2_IFC3x2",
     "coords": [
       41.149977,
       -8.627673
     ],
-    "modelUrl": "models/XYZ.glb"
+    "modelUrl": "models/NLRS_Onderwijsmodel_Bouwkundig_LOD3.2_IFC3x2.glb"
   },
   {
-    "id": "Model Example 3",
-    "name": "",
+    "id": "4",
+    "name": "Ifc2x3_Duplex_Architecture.glb",
     "coords": [
-      41.149939,
-      -8.628042
+      41.147890,
+      -8.642123
     ],
-    "modelUrl": "models/XYZ.glb"
+    "modelUrl": "models/Ifc2x3_Duplex_Architecture.glb"
+  },
+  {
+    "id": "5",
+    "name": "Ifc2x3_SampleCastle.glb",
+    "coords": [
+      41.153210,
+      -8.629876
+    ],
+    "modelUrl": "models/Ifc2x3_SampleCastle.glb"
+  },
+  {
+    "id": "6",
+    "name": "Ifc4_Revit_ARC.glb",
+    "coords": [
+      41.148765,
+      -8.615432
+    ],
+    "modelUrl": "models/Ifc4_Revit_ARC.glb"
+  },
+  {
+    "id": "7",
+    "name": "Ifc4_SampleHouse.glb",
+    "coords": [
+      41.151987,
+      -8.633210
+    ],
+    "modelUrl": "models/Ifc4_SampleHouse.glb"
   }
 ]
