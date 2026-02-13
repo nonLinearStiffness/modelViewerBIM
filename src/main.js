@@ -77,7 +77,7 @@ function addLocationMarkers() {
   });
 }
 
-// This function allows navigation to the AR view for a specific model
+// This function allows the specific model to be added as AR element in the map.
 function goToAR(id) {
   if (leafletMap) {
     mapCenter = leafletMap.getCenter();
@@ -109,6 +109,7 @@ function renderARView(id) {
         alt="3D model of ${loc.name}"
         autoplay
         ar
+        ar-scale="fixed"
         ar-modes="scene-viewer quick-look webxr"
         camera-controls
         max-field-of-view="180deg"
