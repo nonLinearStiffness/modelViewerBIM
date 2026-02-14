@@ -1,13 +1,24 @@
+/* Import external libraries */
 import "leaflet";
 import "./main.css";
+import * as THREE from 'three';
+import * as LocAR from "locar";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
+/* Import internal libraries */
+/* --- END --- */
+
+/* Declaration of variables */
 const app = document.getElementById("app");
 
 let leafletMap = null;
 let locations = [];
 let mapCenter = null;
 let mapZoom = null;
+/* --- END --- */
 
+
+/* CUSTOM FUNCTIONS */
 // Fetch model data from JSON file
 async function fetchModelData() {
   const res = await fetch("models.json");
@@ -15,18 +26,7 @@ async function fetchModelData() {
   return res.json();
 }
 
-// Not needed now with the building icon.
-/* // Red marker icon (public domain, from https://github.com/pointhi/leaflet-color-markers)
-const redIcon = new L.Icon({
-  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-}); */
-
-// Example: Custom building icon (uncomment and use if you want a building image)
+// Custom building icon
 const buildingIcon = new L.Icon({
   iconUrl: "bim.png",
   iconSize: [48, 48], // Increased size
@@ -77,7 +77,7 @@ function addLocationMarkers() {
   });
 }
 
-// This function allows the specific model to be added as AR element in the map.
+// This function allows navigation to the AR view for a specific model
 function goToAR(id) {
   if (leafletMap) {
     mapCenter = leafletMap.getCenter();
@@ -95,6 +95,7 @@ function showDisclaimer(show) {
 }
 
 // This function allows rendering the AR view for a specific model
+
 function renderARView(id) {
   showDisclaimer(false);
   const loc = locations.find((l) => l.id === id);
@@ -149,6 +150,7 @@ function renderMapView() {
   leafletMap = L.map("map");
 
   // Add OpenStreetMap tile layer
+
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors",
   }).addTo(leafletMap);
@@ -161,20 +163,9 @@ function renderMapView() {
 
   // Add the location markers
   addLocationMarkers();
-
-  // Add custom control again
-  const centerControl = L.control({ position: "bottomright" });
-  centerControl.onAdd = function (map) {
-    const btn = L.DomUtil.create("button", "leaflet-bar center-control");
-    btn.textContent = "📍";
-    btn.title = "Center on Me";
-    L.DomEvent.disableClickPropagation(btn);
-    btn.addEventListener("click", () => locateUser(btn));
-    return btn;
-  };
-  centerControl.addTo(leafletMap);
 }
 
+/* HTML to diaplay if the map render fails */
 function renderNotFound() {
   app.innerHTML = `
     <div style="padding: 2rem; text-align: center;">
@@ -184,15 +175,16 @@ function renderNotFound() {
   `;
 }
 
+/* Function to route the page to map or AR or default */
 function router() {
   const hash = location.hash || "#";
   const match = hash.match(/^#\/ar\/(\d+)$/);
+  const isQRScanner = hash === '#/qr-scanner';
 
   if (hash === "#") {
     renderMapView();
   } else if (match) {
     renderARView(match[1]);
-    
   } else {
     renderNotFound();
   }
@@ -201,12 +193,43 @@ function router() {
 async function init() {
   try {
     locations = await fetchModelData();
-    router(); // render initial view
+    router();
     window.addEventListener("hashchange", router);
   } catch (err) {
     console.error(err);
     renderNotFound();
   }
 }
+/* --- END --- */
 
+
+/* MAIN ACTIONS */
+/* 1. Initiate the init function. */
 init();
+
+/* 2. Start a geolocation watch and update the HTML geo element data with new data. */
+const geoDiv = document.getElementById("geo-position");
+geoDiv.textContent = "Waiting for geolocation data...";
+
+async function updateGeolocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition((position) => {
+      geoDiv.textContent = "Latitude: " +
+        position.coords.latitude.toFixed(5) + "° N, Longitude: " +
+        position.coords.longitude.toFixed(5) + "° E";
+    }, (error) => { console.error("Geolocation Error: ", error) });
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+    geoDiv.textContent = "Geolocation is not supported by this browser.";
+  }
+}
+
+updateGeolocation();
+
+/* 3.  */
+
+/* --- END --- */
+
+// ---------------------------------------------- WIP ----------------------------------------------
+
+// ---------------------------------------------- WIP ----------------------------------------------
