@@ -1,7 +1,5 @@
 [
   {
-<<<<<<< HEAD
-=======
     "id": "0",
     "name": "Test Building",
     "coords": [
@@ -11,16 +9,11 @@
     "modelUrl": "models/ccg.glb"
   },
   {
->>>>>>> 084098e165153fa32532065f878390a8a990f949
     "id": "1",
     "name": "CCG/ZGDV Building",
     "coords": [
       41.453189303202734, -8.2883417525851
     ],
-<<<<<<< HEAD
     "modelUrl": "models/ccg-animated.glb"
-=======
-    "modelUrl": "models/ccg.glb"
->>>>>>> 084098e165153fa32532065f878390a8a990f949
   }
 ]
