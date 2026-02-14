@@ -204,23 +204,4 @@ async function init() {
 /* 1. Initiate the init function. */
 init();
 
-/* 2. Start a geolocation watch and update the HTML geo element data with new data. */
-const geoDiv = document.getElementById("geo-position");
-geoDiv.textContent = "Waiting for geolocation data...";
-
-async function updateGeolocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition((position) => {
-      geoDiv.textContent = "Latitude: " +
-        position.coords.latitude.toFixed(5) + "° N, Longitude: " +
-        position.coords.longitude.toFixed(5) + "° E";
-    }, (error) => { console.error("Geolocation Error: ", error) });
-  } else {
-    console.error("Geolocation is not supported by this browser.");
-    geoDiv.textContent = "Geolocation is not supported by this browser.";
-  }
-}
-
-updateGeolocation();
-
 /* --- END --- */
