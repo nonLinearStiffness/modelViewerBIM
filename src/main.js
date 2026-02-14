@@ -1,9 +1,6 @@
 /* Import external libraries */
 import "leaflet";
 import "./main.css";
-import * as THREE from 'three';
-import * as LocAR from "locar";
-import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 /* Import internal libraries */
 /* --- END --- */
@@ -226,10 +223,4 @@ async function updateGeolocation() {
 
 updateGeolocation();
 
-/* 3.  */
-
 /* --- END --- */
-
-// ---------------------------------------------- WIP ----------------------------------------------
-
-// ---------------------------------------------- WIP ----------------------------------------------
